@@ -95,6 +95,22 @@ class UserModel {
         $result=$statement->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
+    static public function updateUser($parametro,$data){
+        $query = "";
+        $param = is_numeric($parametro) ? $parametro : 0;
+        $query = "UPDATE users SET use_mail=:use_mail,use_pss=:use_pss";
+        $query .= ($param > 0) ? " WHERE users.use_id = '$param' AND " : "";
+        $query .= ($param > 0) ? " us_status = '1';" : " WHERE us_status = '1';";
+        // echo $query;
+        $statement = Connection::conect()->prepare($query);
+        $statement -> bindParam(":use_mail", $data["use_mail"], PDO::PARAM_STR);
+        $statement -> bindParam(":use_pss", $data["use_pss"], PDO::PARAM_STR);
+        $message = $statement -> execute() ? "ok" : Connection::conect()->errorInfo();
+        $statement->closeCursor();
+        $statement = null;
+        $query = "";
+        return $message;
+    }
 }
 
 ?>
