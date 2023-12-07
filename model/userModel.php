@@ -70,7 +70,7 @@ class UserModel {
         $result=$statement->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
-    static public function updateUser($parametro){
+    static public function deleteUser($parametro){
         $query = "";
         $param = is_numeric($parametro) ? $parametro : 0;
         $query = "UPDATE users SET us_status = '0'";
