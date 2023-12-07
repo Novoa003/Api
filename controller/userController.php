@@ -38,7 +38,7 @@ class UserController{
                         echo"NO HAY USUARIO PARA ACTUALIZAR";
                         return ;
                     default:
-                    UserModel::updateUser($this->_complement);
+                    UserModel::deleteUser($this->_complement);
                     echo "USUARIO ELIMINADO";
                     return ;
                 }
